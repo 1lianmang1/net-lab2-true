@@ -1,0 +1,136 @@
+﻿@charset "utf-8";
+/* Great Lakescape Lodge custom stylesheet */
+/* ---- 3.b Web字体定义 ---- */
+@font-face {
+    font-family: "LodgeScript";
+    src: url("cac_champagne") format("woff"),
+         url("cac_champagne") format("truetype");
+}
+@font-face {
+    font-family: "LodgeSerif";
+    src: url("cac_champagne.ttf") format("truetype");
+}
+
+/* 使用字体：页面标题使用手写风格字体 */
+h1 {
+    font-family: "LodgeScript", cursive;
+}
+body {
+    font-family: "LodgeSerif", Georgia, serif;
+}
+
+
+/* ----3.c 背景和文字颜色 ---- */
+body {
+    background-color: black;       /* 颜色名称 */
+    color: #f0e9d8;                /* 十六进制色值 */
+}
+header nav {
+    background-color: rgb(80,30,90);
+}
+footer {
+    background: purple;            /* CSS颜色名 */
+}
+a {
+    color: #ffb8ff;
+}
+
+
+/* ----3.d 半透明颜色 rgba，alpha=透明度 ---- */
+section#leftcol aside:nth-of-type(1) {
+    background-color: rgba(220,160,160,0.75); /*75%不透明，半透红粉色*/
+    color: black;
+}
+section#leftcol aside:nth-of-type(2) {
+    background-color: rgba(220,200,120,0.75); /*半透米黄色*/
+    color:black;
+}
+
+
+
+/* ----3.e ID、子选择器、嵌套后代选择器 ---- */
+/* ID选择器 */
+#rightcol {
+    background-color:#4b2463;
+}
+/*直接子元素 > ：只选中rightcol下直接的nav，不选中深层嵌套nav*/
+#rightcol > nav > h2 {
+    color:#ffddff;
+}
+/*嵌套后代选择器（空格）：blockquote内部p标签*/
+#rightcol blockquote {
+    color:#f8c8ff;
+    font-style:italic;
+}
+/*header下直接子元素nav，再嵌套a标签*/
+header nav > ul > li a {
+    color:white;
+}
+
+
+
+/* ----3.f 修改列表与列表标记 ---- */
+#rightcol nav ul {
+    list-style-type: none; /*移除默认圆点*/
+    padding-left:10px;
+}
+#leftcol aside ul {
+    list-style-type: square; /*方块标记*/
+}
+#leftcol aside li {
+    margin:6px 0;
+}
+
+
+
+/* ----3.g 伪类（hover）+伪元素 ---- */
+/*链接伪类*/
+header nav a:link { text-decoration:none; }
+header nav a:hover { background-color:#703888; }
+
+/*伪元素::before，给h2标题前面添加装饰符号*/
+#rightcol nav h2::before {
+    content:"❦ ";
+}
+
+
+
+/* ----3.h margin外边距 padding内边距 ---- */
+section#leftcol aside {
+    padding:12px;      /*内边距*/
+    margin-top:10px;    /*外边距*/
+}
+blockquote {
+    padding:15px;
+    margin:20px 8px;
+}
+footer {
+    padding:10px;
+    margin-top:20px;
+}
+
+
+/* ----3.i CSS生成内容到页面，content属性 ---- */
+footer::after {
+    content:" | Thank you for visiting Great Lakescape Lodge";
+    display:block;
+    text-align:center;
+    margin-top:8px;
+    font-size:0.9em;
+}
+
+
+
+/* ----3.j Flexbox布局，改造头部主导航替换table-cell方案 ---- */
+header > nav {
+    display: flex !important; /*覆盖lake_layout.css里面display:table*/
+    width:100%;
+}
+header > nav > ul {
+    display:flex !important; /*覆盖table‑row*/
+    width:100%;
+}
+header > nav > ul > li {
+    display:block !important; /*覆盖table‑cell*/
+    flex: 1; /*每个导航按钮自动等分宽度*/
+}
